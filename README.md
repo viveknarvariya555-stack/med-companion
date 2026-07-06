@@ -102,7 +102,7 @@ The narrative demo script for presentation is available here:
    git add .
    git commit -m "Initial commit: med-companion ADK agent"
    git branch -M main
-   git remote add origin https://github.com/<your-username>/med-companion.git
+   git remote add origin https://github.com/viveknarvariya555-stack/med-companion
    git push -u origin main
    ```
 

@@ -1,44 +1,119 @@
-[0:00 — HOOK]
-Managing medications and checking drug safety can be confusing and stressful for patients. Med-Companion makes this simple and safe by providing a secure, intelligent, multi-agent assistant to check drug interactions and log daily doses.
+================================================================================
+                      MED-COMPANION PRESENTATION SCRIPT
+================================================================================
+
+[0:00 — THE HOOK]
+
+* VISUAL: (Open cover banner on screen: assets/cover_page_banner.png)
+
+* SPEAK:
+  "Managing medications and checking drug safety can be confusing and 
+  stressful for patients. Med-Companion makes this simple and safe by 
+  providing a secure, intelligent, multi-agent assistant to check drug 
+  interactions and log daily doses."
+
 
 [0:20 — WHAT IT IS]
-Med-Companion is built for the "Agents for Good" track. It focuses on patient safety, data security, and keeping a human in control.
 
-[0:40 — SHOW THE BANNER]
-(show assets/cover_page_banner.png)
-As you can see on our project banner, the application rests on three key pillars: a Multi-Agent Workflow, Secure Data Scrubbing, and Human Verification.
+* SPEAK:
+  "Med-Companion is built for the 'Agents for Good' track. It focuses 
+  on patient safety, data security, and keeping a human in control."
 
-(pause)
 
-[1:00 — ARCHITECTURE]
-(show assets/architecture_diagram.png)
-Let's look at the workflow diagram to see how it works.
-First, a user's question goes through our Security Checkpoint. This node automatically checks for hacking attempts and hides personal info like emails and Social Security Numbers.
-Once clean, the query goes to the main Orchestrator Agent.
-The Orchestrator sends tasks to specialized helper agents: the safety_agent checks drug guidelines, and the scheduler_agent handles medication logs.
-Both agents use our Model Context Protocol (MCP) Server to access drug databases and local files securely.
-Finally, if the user asks to log a medication, the workflow pauses at the Human-in-the-Loop gate to ask for your confirmation before writing any data.
+[0:40 — CORE PILLARS]
 
-(pause)
+* VISUAL: (Point to the three icons on the cover banner)
+
+* SPEAK:
+  "As you can see on our project banner, the application rests on three 
+  key pillars: a Multi-Agent Workflow, Secure Data Scrubbing, and Human 
+  Verification."
+
+* ACTION: (Pause for 2 seconds)
+
+
+[1:00 — HOW THE SYSTEM WORKS (ARCHITECTURE)]
+
+* VISUAL: (Switch screen to show: assets/architecture_diagram.png)
+
+* SPEAK:
+  "Let's look at the workflow diagram to see how the system works.
+
+  First, a user's question goes through our Security Checkpoint. This node 
+  automatically checks for hacking attempts and hides personal info like 
+  emails and Social Security Numbers.
+
+  Once clean, the query goes to the main Orchestrator Agent.
+
+  The Orchestrator then delegates tasks to specialized helper agents: 
+  the safety_agent checks drug guidelines, and the scheduler_agent handles 
+  medication logs.
+
+  Both agents use our Model Context Protocol (MCP) Server to access drug 
+  databases and local files securely.
+
+  Finally, if the user asks to log a medication, the workflow pauses at the 
+  Human-in-the-Loop gate to ask for your confirmation before writing any data."
+
+* ACTION: (Pause for 3 seconds)
+
 
 [2:00 — LIVE DEMO]
-(switch to playground at localhost:18081)
-Let's look at three quick examples in our playground.
-First, we ask: "My name is John Doe, my SSN is 123-45-6789, and my email is john@example.com. Can you tell me the guidelines for Metformin?"
-Notice that the SSN and email are scrubbed instantly to protect privacy. The safety agent then successfully fetches the Metformin guidelines.
 
-(pause)
+* VISUAL: (Switch screen to the running playground at http://localhost:18081)
 
-Second, let's test drug interaction: "I am taking Aspirin and Warfarin. Is this safe?"
-The safety agent checks the database and alerts us that combining these two medications is high-risk and poses a severe bleeding hazard.
+* SPEAK:
+  "Let's look at three quick examples in our live playground."
 
-(pause)
 
-Third, let's log a dose: "Can you log that I took 1 pill of Metformin now?"
-The scheduler agent stages the log entry, and the workflow pauses. We get a prompt asking for our approval. When we type "yes", the system securely logs the dose in our care file.
+* ACTION: (Type and run Test Case 1 in the chat input)
+  * INPUT: "My name is John Doe, my SSN is 123-45-6789, and my email is john@example.com. Can you tell me the guidelines for Metformin?"
 
-[3:00 — SECURITY & MCP]
-This project ensures patient data stays private and safe. By keeping a human in the loop for critical actions and separating database access via MCP tools, we prevent unauthorized actions and data leaks.
+* SPEAK:
+  "Notice that the SSN and email are scrubbed instantly to protect privacy. 
+  The safety agent then successfully fetches the Metformin guidelines."
 
-[3:30 — IMPACT / CLOSE]
-Med-Companion helps patients manage their health safely from their own local system. It bridges the gap between static medical databases and daily care. Thank you!
+* ACTION: (Pause for 2 seconds)
+
+
+* ACTION: (Type and run Test Case 2 in the chat input)
+  * INPUT: "I am taking Aspirin and Warfarin. Is this safe?"
+
+* SPEAK:
+  "Second, let's test drug interaction. The safety agent checks the database 
+  and alerts us that combining these two medications is high-risk and poses a 
+  severe bleeding hazard."
+
+* ACTION: (Pause for 2 seconds)
+
+
+* ACTION: (Type and run Test Case 3 in the chat input)
+  * INPUT: "Can you log that I took 1 pill of Metformin now?"
+
+* SPEAK:
+  "Third, let's log a dose. The scheduler agent stages the log entry, and the 
+  workflow pauses. We get a prompt asking for our approval. 
+
+  When we type 'yes', the system securely logs the dose in our care file."
+
+* ACTION: (Type 'yes' in prompt and submit, show the success message)
+* ACTION: (Pause for 2 seconds)
+
+
+[3:00 — SECURITY & DATA SAFETY]
+
+* SPEAK:
+  "This project ensures patient data stays private and safe. By keeping a 
+  human in the loop for critical actions and separating database access 
+  using MCP tools, we prevent unauthorized actions and data leaks."
+
+
+[3:30 — IMPACT & WRAP-UP]
+
+* SPEAK:
+  "Med-Companion helps patients manage their health safely from their own 
+  local system. It bridges the gap between static medical databases and 
+  daily care.
+
+  Thank you!"
+================================================================================

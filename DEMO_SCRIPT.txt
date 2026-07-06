@@ -1,45 +1,44 @@
 [0:00 — HOOK]
-Managing complex medication schedules and checking drug safety can be a daunting, high-risk task for patients. Med-Companion solves this problem by providing a secure, automated, multi-agent AI assistant that deciphers intake instructions and verifies drug interactions.
+Managing medications and checking drug safety can be confusing and stressful for patients. Med-Companion makes this simple and safe by providing a secure, intelligent, multi-agent assistant to check drug interactions and log daily doses.
 
 [0:20 — WHAT IT IS]
-Med-Companion belongs to the Agents for Good track, ensuring patient safety through clinical validation, security compliance, and human-in-the-loop controls.
+Med-Companion is built for the "Agents for Good" track. It focuses on patient safety, data security, and keeping a human in control.
 
 [0:40 — SHOW THE BANNER]
 (show assets/cover_page_banner.png)
-As you can see on the project banner, the application is built on three core pillars: a Multi-Agent Workflow, Secure Scrubbing, and Human Verification.
+As you can see on our project banner, the application rests on three key pillars: a Multi-Agent Workflow, Secure Data Scrubbing, and Human Verification.
 
 (pause)
 
 [1:00 — ARCHITECTURE]
 (show assets/architecture_diagram.png)
-Let's walk through the architecture diagram to see how data flows.
-First, user queries enter the Security Checkpoint node. This node filters out prompt injections and redacts sensitive PII like Social Security Numbers and email addresses.
-Next, clean queries pass to the main Orchestrator Agent.
-The Orchestrator utilizes AgentTools to delegate tasks to specialized sub-agents. It calls the safety_agent to check drug-drug interactions and guidelines, and the scheduler_agent to stage medication logs.
-These agents communicate with our Model Context Protocol, or MCP, Server, which exposes tools to read and write database records.
-Finally, the flow checks if a logging action requires human approval. If so, it routes to the hitl_approval node to pause and request permission before writing. Otherwise, it delivers the output directly to the final_output node.
+Let's look at the workflow diagram to see how it works.
+First, a user's question goes through our Security Checkpoint. This node automatically checks for hacking attempts and hides personal info like emails and Social Security Numbers.
+Once clean, the query goes to the main Orchestrator Agent.
+The Orchestrator sends tasks to specialized helper agents: the safety_agent checks drug guidelines, and the scheduler_agent handles medication logs.
+Both agents use our Model Context Protocol (MCP) Server to access drug databases and local files securely.
+Finally, if the user asks to log a medication, the workflow pauses at the Human-in-the-Loop gate to ask for your confirmation before writing any data.
 
 (pause)
 
 [2:00 — LIVE DEMO]
 (switch to playground at localhost:18081)
-Now, let's look at three live scenarios.
-In our first test case, we submit a query containing clinical questions alongside personal information: 'My name is John Doe, my SSN is 123-45-6789, and my email is john@example.com. Can you tell me the guidelines for Metformin?'
-Notice that the SSN and email are redacted instantly by the Security Checkpoint before any data reaches the model. The safety_agent then successfully fetches the guidelines for Metformin.
+Let's look at three quick examples in our playground.
+First, we ask: "My name is John Doe, my SSN is 123-45-6789, and my email is john@example.com. Can you tell me the guidelines for Metformin?"
+Notice that the SSN and email are scrubbed instantly to protect privacy. The safety agent then successfully fetches the Metformin guidelines.
 
 (pause)
 
-For our second case, we test drug interaction safety: 'I am taking Aspirin and Warfarin. Is this safe?'
-The Orchestrator delegates this to the safety_agent, which queries the MCP server's check_drug_interactions tool and alerts us that this combination poses a severe bleeding hazard.
+Second, let's test drug interaction: "I am taking Aspirin and Warfarin. Is this safe?"
+The safety agent checks the database and alerts us that combining these two medications is high-risk and poses a severe bleeding hazard.
 
 (pause)
 
-In our third case, we test medication logging: 'Can you log that I took 1 pill of Metformin now?'
-The scheduler_agent stages this action. The graph router detects the request, and the execution is paused at the hitl_approval gate. The user is prompted: '✋ Med-Companion requires your approval to perform the following action...'
-Once we reply 'yes', the system writes the entry to our care logs file and completes the execution.
+Third, let's log a dose: "Can you log that I took 1 pill of Metformin now?"
+The scheduler agent stages the log entry, and the workflow pauses. We get a prompt asking for our approval. When we type "yes", the system securely logs the dose in our care file.
 
 [3:00 — SECURITY & MCP]
-This secure workflow ensures that patient queries are scrubbed of PII on entry, and that sensitive actions are never executed without human authorization. The MCP server serves as our clean database layer, exposing specific tool boundaries to each agent.
+This project ensures patient data stays private and safe. By keeping a human in the loop for critical actions and separating database access via MCP tools, we prevent unauthorized actions and data leaks.
 
 [3:30 — IMPACT / CLOSE]
-Med-Companion empowers patients to safely manage their clinical health data locally. By combining multi-agent orchestration, MCP tools, and security filters, we bridge the gap between static clinical databases and intelligent, patient-centric support. Thank you.
+Med-Companion helps patients manage their health safely from their own local system. It bridges the gap between static medical databases and daily care. Thank you!

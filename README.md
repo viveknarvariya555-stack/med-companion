@@ -80,8 +80,8 @@ graph TD
 ## Assets
 
 Once generated, the following diagrams can be found in the assets folder:
-- **Workflow Diagram**: ![Agent Workflow Diagram](file:///Users/viveknarvariya/Desktop/ADK.workspace/med-companion/assets/architecture_diagram.png)
-- **Cover Page Banner**: ![Cover Page Banner](file:///Users/viveknarvariya/Desktop/ADK.workspace/med-companion/assets/cover_page_banner.png)
+- **Workflow Diagram**: ![Agent Workflow Diagram](assets/architecture_diagram.png)
+- **Cover Page Banner**: ![Cover Page Banner](assets/cover_page_banner.png)
 
 ## Demo Script
 

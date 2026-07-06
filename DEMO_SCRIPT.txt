@@ -17,7 +17,7 @@
 
 * SPEAK:
   "Med-Companion is built for the 'Agents for Good' track. It focuses 
-  on patient safety, data security, and keeping a human in control."
+  on patient safety, data security, and human-in-the-loop validation for clinical actions."
 
 
 [0:40 — CORE PILLARS]

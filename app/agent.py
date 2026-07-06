@@ -207,14 +207,14 @@ def security_checkpoint(ctx: Context, node_input: types.Content) -> Event:
     write_audit_log("INFO", "INPUT_CLEARED", "Input passed all checks.")
     return Event(output=node_input, route="__DEFAULT__")
 
-def router_node(ctx: Context, node_input: types.Content) -> Event:
+def router_node(ctx: Context, node_input: Any) -> Event:
     """Inspects session state to see if a logging action requires human approval."""
     pending = ctx.state.get("pending_action")
     if pending:
         return Event(output=node_input, route="requires_approval")
     return Event(output=node_input, route="__DEFAULT__")
 
-async def hitl_approval(ctx: Context, node_input: types.Content):
+async def hitl_approval(ctx: Context, node_input: Any):
     """Prompts the user for confirmation of sensitive logging actions."""
     if not ctx.resume_inputs or "approve_log" not in ctx.resume_inputs:
         pending = ctx.state.get("pending_action")
@@ -273,7 +273,7 @@ def final_output(ctx: Context, node_input: Any):
 
 # --- Workflow Setup ---
 
-root_workflow = Workflow(
+root_agent = Workflow(
     name="med_companion_workflow",
     edges=[
         (START, security_checkpoint),
@@ -285,7 +285,7 @@ root_workflow = Workflow(
 )
 
 app = App(
-    root_agent=root_workflow,
+    root_agent=root_agent,
     name="app",
     resumability_config=ResumabilityConfig(is_resumable=True)
 )

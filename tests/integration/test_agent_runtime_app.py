@@ -12,11 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import logging
-
+import os
 import pytest
-from google.adk.events.event import Event
+import google.auth
 
+# Check for GCP credentials before importing the app module to prevent crash during test collection
+try:
+    _, project_id = google.auth.default()
+    has_gcp = project_id is not None
+except Exception:
+    has_gcp = False
+
+if not has_gcp:
+    pytest.skip("Skipping Agent Engine integration tests because Google Cloud credentials are not configured.", allow_module_level=True)
+
+import logging
+from google.adk.events.event import Event
 from app.agent_runtime_app import AgentEngineApp
 
 
